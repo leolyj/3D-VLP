@@ -1,0 +1,21 @@
+
+--------------------------------------best--------------------------------------
+[best] epoch: 105
+[best]  bleu-1: 0.5709
+[best]  bleu-2: 0.48575
+[best]  bleu-3: 0.4005
+[best]  bleu-4: 0.32549
+[best]  cider: 0.54499
+[best]  rouge: 0.51576
+[best]  meteor: 0.24738
+[sco.] ref_acc: 0.21458
+[sco.] obj_acc: 0.8245
+[sco.] pos_ratio: 0.30188, neg_ratio: 0.69812
+[sco.] iou_rate_0.25: 0.50661, iou_rate_0.5: 0.3898
+[best] best_caption_epoch: 105
+[best]  best_caption_bleu-4: 0.32549
+[best]  best_caption_cider: 0.54499
+[best]  best_caption_rouge: 0.51576
+[best]  best_caption_meteor: 0.24738
+[sco.] best_ground_epoch: 101
+[sco.] best_ground_iou_rate_0.25: 0.51502, best_ground_iou_rate_0.5: 0.39914
