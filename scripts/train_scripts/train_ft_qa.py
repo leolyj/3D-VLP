@@ -57,9 +57,9 @@ def parse_option():
     parser.add_argument("--num_points", type=int, default=40000, help="Point Number [default: 40000]")
     parser.add_argument("--no_height", action="store_true", help="Do NOT use height signal in input.")
     parser.add_argument("--no_augment", action="store_true", help="Do NOT use data augmentations.")
-    parser.add_argument("--use_color", type=bool, default=False, help="Use RGB color in input.")  ###
-    parser.add_argument("--use_normal", type=bool, default=True, help="Use RGB color in input.")  ###
-    parser.add_argument("--use_multiview", type=bool, default=True, help="Use multiview images.")  ###
+    parser.add_argument("--use_color", action="store_true", help="Use RGB color in input.")  ###
+    parser.add_argument("--use_normal", action="store_true", help="Use RGB color in input.")  ###
+    parser.add_argument("--use_multiview", action="store_true", help="Use multiview images.")  ###
     # Model
     parser.add_argument("--hidden_size", type=int, default=256, help="Hidden layer size[default: 256]")
     ## pointnet & votenet & proposal
