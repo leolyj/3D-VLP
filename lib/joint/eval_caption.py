@@ -20,7 +20,7 @@ import lib.capeval.rouge.rouge as caprouge
 import lib.capeval.meteor.meteor as capmeteor
 
 from data.scannet.model_util_scannet import ScannetDatasetConfig
-from lib.configs.config_joint import CONF
+from lib.configs.config_ft import CONF
 from lib.ap_helper.ap_helper_fcos import parse_predictions
 from lib.loss_helper.loss_captioning import get_scene_cap_loss, get_object_cap_loss
 from utils.box_util import box3d_iou_batch_tensor

@@ -17,7 +17,7 @@ from itertools import chain
 from collections import Counter
 from torch.utils.data import Dataset
 
-from lib.configs.config_joint import CONF
+from lib.configs.config_pretrain import CONF
 from utils.pc_utils import random_sampling, rotx, roty, rotz
 from utils.box_util import get_3d_box, get_3d_box_batch
 from data.scannet.model_util_scannet import rotate_aligned_boxes, ScannetDatasetConfig, rotate_aligned_boxes_along_axis

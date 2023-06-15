@@ -7,7 +7,7 @@ import numpy as np
 import random
 
 from data.scannet.model_util_scannet import ScannetDatasetConfig
-from lib.configs.config_captioning import CONF
+from lib.configs.config_ft import CONF
 from utils.box_util import box3d_iou_batch_tensor
 from models.transformer.attention import MultiHeadAttention
 

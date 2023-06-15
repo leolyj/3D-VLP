@@ -12,7 +12,7 @@ from tqdm import tqdm
 from tensorboardX import SummaryWriter
 from torch.optim.lr_scheduler import StepLR, MultiStepLR, CosineAnnealingLR
 
-from lib.configs.config_joint import CONF
+from lib.configs.config_ft import CONF
 from lib.loss_helper.loss_pretrain_ft import get_ft_loss
 from lib.joint.eval_caption import eval_cap
 from lib.joint.eval_ground import get_eval as eval_ground
@@ -194,18 +194,18 @@ class Solver():
         }
 
         # tensorboard
-        os.makedirs(os.path.join(CONF.PATH.OUTPUT_FT, stamp, "tensorboard/train"), exist_ok=True)
-        os.makedirs(os.path.join(CONF.PATH.OUTPUT_FT, stamp, "tensorboard/val"), exist_ok=True)
+        os.makedirs(os.path.join(CONF.PATH.OUTPUT, stamp, "tensorboard/train"), exist_ok=True)
+        os.makedirs(os.path.join(CONF.PATH.OUTPUT, stamp, "tensorboard/val"), exist_ok=True)
         self._log_writer = {
-            "train": SummaryWriter(os.path.join(CONF.PATH.OUTPUT_FT, stamp, "tensorboard/train")),
-            "val": SummaryWriter(os.path.join(CONF.PATH.OUTPUT_FT, stamp, "tensorboard/val"))
+            "train": SummaryWriter(os.path.join(CONF.PATH.OUTPUT, stamp, "tensorboard/train")),
+            "val": SummaryWriter(os.path.join(CONF.PATH.OUTPUT, stamp, "tensorboard/val"))
         }
 
         # training log
-        log_path = os.path.join(CONF.PATH.OUTPUT_FT, stamp, "log.txt")
+        log_path = os.path.join(CONF.PATH.OUTPUT, stamp, "log.txt")
         self.log_fout = open(log_path, "a")
 
-        eval_path = os.path.join(CONF.PATH.OUTPUT_FT, stamp, "eval.txt")
+        eval_path = os.path.join(CONF.PATH.OUTPUT, stamp, "eval.txt")
         self.eval_fout = open(eval_path, "a")
 
         # private
@@ -280,7 +280,7 @@ class Solver():
 
                 # save model
                 self._log("saving last models...\n")
-                model_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+                model_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
                 torch.save(self.model.state_dict(), os.path.join(model_root, "model_last.pth"))
 
                 # update lr scheduler
@@ -864,7 +864,7 @@ class Solver():
 
                 # save model
                 self._log("saving best models...\n")
-                model_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+                model_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
                 torch.save(self.model.state_dict(), os.path.join(model_root, "model.pth"))
 
             if phase == "val" and caption_cur_best > self.best["caption_sum"]:
@@ -879,7 +879,7 @@ class Solver():
 
                 # save model
                 self._log("saving best caption models...\n")
-                model_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+                model_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
                 torch.save(self.model.state_dict(), os.path.join(model_root, "caption_model.pth"))
 
             if phase == "val" and ground_cur_best > self.best["ground_sum"]:
@@ -892,7 +892,7 @@ class Solver():
 
                 # save model
                 self._log("saving best ground models...\n")
-                model_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+                model_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
                 torch.save(self.model.state_dict(), os.path.join(model_root, "ground_model.pth"))
 
     def _finish(self, epoch_id):
@@ -907,18 +907,18 @@ class Solver():
             "optimizer_state_dict": self.optimizer.state_dict(),
             "best": self.best
         }
-        checkpoint_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+        checkpoint_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
         torch.save(save_dict, os.path.join(checkpoint_root, "checkpoint.tar"))
 
         # save model
         self._log("saving last models...\n")
-        model_root = os.path.join(CONF.PATH.OUTPUT_FT, self.stamp)
+        model_root = os.path.join(CONF.PATH.OUTPUT, self.stamp)
         torch.save(self.model.state_dict(), os.path.join(model_root, "model_last.pth"))
 
         # export
         for phase in ["train", "val"]:
             self._log_writer[phase].export_scalars_to_json(
-                os.path.join(CONF.PATH.OUTPUT_FT, self.stamp, "tensorboard/{}".format(phase), "all_scalars.json"))
+                os.path.join(CONF.PATH.OUTPUT, self.stamp, "tensorboard/{}".format(phase), "all_scalars.json"))
 
     def _train_report(self, epoch_id):
         # compute ETA
@@ -1062,5 +1062,5 @@ class Solver():
             best_ground_iou_rate_5=round(self.best["best_ground_iou_rate_0.5"], 5),
         )
         self._log(best_report)
-        with open(os.path.join(CONF.PATH.OUTPUT_FT, self.stamp, "best.txt"), "w") as f:
+        with open(os.path.join(CONF.PATH.OUTPUT, self.stamp, "best.txt"), "w") as f:
             f.write(best_report)

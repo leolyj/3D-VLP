@@ -23,7 +23,7 @@ from models.network.jointnet import JointNet
 from data.scannet.model_util_scannet import ScannetDatasetConfig
 from lib.joint.dataset import ScannetReferenceDataset
 from lib.loss_helper.loss_joint import get_joint_loss
-from lib.configs.config_joint import CONF
+from lib.configs.config_ft import CONF
 
 # data
 #SCANNET_ROOT = "/mnt/canis/Datasets/ScanNet/public/v2/scans/" # TODO point this to your scannet data

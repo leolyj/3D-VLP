@@ -5,7 +5,7 @@ import numpy as np
 import sys
 import os
 import copy
-from lib.configs.config_joint import CONF
+from lib.configs.config_pretrain import CONF
 from utils.box_util import get_3d_box, get_3d_box_batch, box3d_iou, box3d_iou_batch
 from .loss_detection import compute_vote_loss, compute_objectness_loss, compute_box_loss, compute_box_and_sem_cls_loss
 from .loss_captioning import compute_cap_loss

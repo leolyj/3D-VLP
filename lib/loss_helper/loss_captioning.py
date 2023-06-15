@@ -12,7 +12,7 @@ import os
 # sys.path.append(os.path.join(os.getcwd(), "lib")) # HACK add the lib folder
 from utils.nn_distance import nn_distance, huber_loss
 from utils.box_util import get_3d_box, get_3d_box_batch, box3d_iou, box3d_iou_batch
-from lib.configs.config_captioning import CONF
+from lib.configs.config_ft import CONF
 from .loss_detection import compute_vote_loss, compute_objectness_loss, compute_box_loss, compute_box_and_sem_cls_loss
 from utils.box_util import rotz_batch_pytorch
 

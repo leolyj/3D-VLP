@@ -12,3 +12,5 @@ scikit-learn
 spacy
 nltk
 pycocoevalcap
+numba
+timm

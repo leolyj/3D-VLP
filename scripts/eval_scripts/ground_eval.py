@@ -15,7 +15,7 @@ from tqdm import tqdm
 from copy import deepcopy
 
 sys.path.append(os.path.join(os.getcwd())) # HACK add the root folder
-from lib.configs.config_joint import CONF
+from lib.configs.config_ft import CONF
 from lib.joint.dataset import ScannetReferenceDataset
 from lib.ap_helper.ap_helper_fcos import APCalculator, parse_predictions, parse_groundtruths
 from lib.loss_helper.loss_joint import get_joint_loss
@@ -514,7 +514,7 @@ if __name__ == "__main__":
     parser.add_argument("--num_points", type=int, default=40000, help="Point Number [default: 40000]")
     parser.add_argument("--num_proposals", type=int, default=256, help="Proposal number [default: 256]")
     parser.add_argument("--num_scenes", type=int, default=-1, help="Number of scenes [default: -1]")
-    parser.add_argument("--force", type=bool, default=True, help="enforce the generation of results")
+    parser.add_argument("--force", action="store_true", help="enforce the generation of results")
     parser.add_argument("--seed", type=int, default=42, help="random seed")
     parser.add_argument("--repeat", type=int, default=1, help="Number of times for evaluation")
     parser.add_argument("--no_height", action="store_true", help="Do NOT use height signal in input.")

@@ -20,7 +20,7 @@ from copy import deepcopy
 from data.scannet.model_util_scannet import ScannetDatasetConfig
 from lib.joint.dataset import ScannetReferenceDataset
 from lib.joint.solver_pretrain import Solver
-from lib.configs.config_joint import CONF
+from lib.configs.config_pretrain import CONF
 from models.network.network_pretrain import JointNet
 from scripts.utils.AdamW import AdamW
 from scripts.utils.script_utils import set_params_lr_dict
